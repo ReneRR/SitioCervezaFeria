@@ -1,0 +1,34 @@
+doctype
+html
+  head
+    title #{title} - FeriaTradicional
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    header
+     img(src='/img/logo2.png',id="logo")
+     p
+     | Cervecería Artesanal Mexicana.
+     div(class="navbar navbar-inverse navbar-fixed-top")
+      .container
+       .navbar-header
+          button.navbar-toggle(type="button", data-toggle="collapse", data-target=".navbar-collapse")
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+          a.navbar-brand(href="/") Menú
+       div(class="collapse navbar-collapse")
+        ul(class="nav navbar-nav")
+           li.active
+              a(href="#") Contacto
+           li
+              a(href="#about") Suscripción
+           li
+              a(href="#contact") Productos 
+    .container
+      .main-content
+        block content
+      .sidebar
+        block sidebar
+    footer
+      p ©Cerveza Feria Tradicional, - powered by Webmonster
+

@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteRule ^ http://%{HTTP_HOST}:3000%{REQUEST_URI} [P]
+
