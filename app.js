@@ -24,10 +24,26 @@ app.get('/', function (req, res) {
   { title : 'Inicio' }
   )
 })
+app.get('/contacto', function(req,res){
+  res.render('contacto',
+    {title:'contacto'}
+    )
+})
 app.get('/about', function(req,res){
   res.render('about',
     {title:'about'}
     )
 })
+app.get('/suscripcion', function(req,res){
+  res.render('suscripcion',
+    {title:'suscripcion'}
+    )
+})
+app.get('/productos', function(req,res){
+  res.render('productos',
+    {title:'productos'}
+    )
+})
+
 app.listen(3000)
 
