@@ -24,5 +24,10 @@ app.get('/', function (req, res) {
   { title : 'Inicio' }
   )
 })
+app.get('/about', function(req,res){
+  res.render('about',
+    {title:'about'}
+    )
+})
 app.listen(3000)
 
