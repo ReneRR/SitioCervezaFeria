@@ -1,4 +1,8 @@
 <?php 
+$dbname="";
+$dbuser="";
+$dbpass="";
+$dbhost="";
 error_reporting(E_ALL);
 try{
 $data = json_decode(file_get_contents('php://input'), true);
@@ -14,7 +18,7 @@ if (!empty($data['email'])) {
     $email = filter_var($email, FILTER_SANITIZE_EMAIL);
     $mensaje=isset($data['mensaje'])?filter_var($data['mensaje'],FILTER_SANITIZE_STRING):'';
     //$respuesta=["email"=>$email,"nombre"=>$nombre,"mensaje"=>$mensaje,"createdOn"=>date('Y-m-d H:i:s')];
-    $db = new PDO('mysql:host=localhost;dbname=rene_clientesferia;charset=utf8mb4', 'renedb', 'u7e8enaqy');
+    $db = new PDO('mysql:host='.$dbhost.';dbname='.$dbname.';charset=utf8mb4', $dbuser, $dbpass);
     $db->exec("INSERT INTO Contacto(email, nombre,mensaje) VALUES('$email', '$nombre','$mensaje')");
   }  
   
