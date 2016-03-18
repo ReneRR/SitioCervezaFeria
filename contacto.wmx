@@ -1,0 +1,32 @@
+<?php 
+error_reporting(E_ALL);
+try{
+$data = json_decode(file_get_contents('php://input'), true);
+$respuesta = [];
+
+if (!empty($data['email'])) {
+  $email=$data['email'];
+  $nombre=empty($data['nombre'])?'anon':filter_var($data['nombre'],FILTER_SANITIZE_STRING);
+  if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+    $respuesta = ["email"=>"no es un correo valido"];
+  }
+  else{
+    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+    $mensaje=isset($data['mensaje'])?filter_var($data['mensaje'],FILTER_SANITIZE_STRING):'';
+    //$respuesta=["email"=>$email,"nombre"=>$nombre,"mensaje"=>$mensaje,"createdOn"=>date('Y-m-d H:i:s')];
+    $db = new PDO('mysql:host=localhost;dbname=rene_clientesferia;charset=utf8mb4', 'renedb', 'u7e8enaqy');
+    $db->exec("INSERT INTO Contacto(email, nombre,mensaje) VALUES('$email', '$nombre','$mensaje')");
+  }  
+  
+} else{
+  $respuesta=["email"=>"es requerido","params"=>$data];
+}
+
+
+  header('Content-Type: application/json');
+  echo json_encode($respuesta);
+  //End of validation 
+}catch(Exception $e){
+  echo $e->getMessage();
+}
+?>
